@@ -1,126 +1,212 @@
-# Step 1: Data modeling
+# Personal Expense Tracker
 
-## 1. What this application manages
+## 1. Project Overview
 
-Application has three main concepts:
+A personal expense tracker that allows users to manage income, expenses, categories, and balances.
 
-1. Transactions: Money coming in or going out.
-2. Categories: Groups used to organize transactions.
-3. Financial calculations: Income, expenses, and balance.
+### Main Features
 
-```
+- Add, edit, and delete transactions.
+- Manage income and expense categories.
+- Calculate total income and expenses.
+- Calculate the current balance.
+- Filter transactions by category and type.
+- Search transactions by title.
+- Sort transactions by date.
+- Generate monthly summaries.
+
+---
+
+## 2. Data Models
+
+### Transaction
+
+A transaction represents either income or an expense.
+
+```js
 const transaction = {
   id: "1",
   title: "Groceries",
   amount: 150,
   type: "expense",
-  category: "food",
+  categoryId: "1",
   date: "2026-11-08",
   description: "Weekly shopping"
 };
 ```
 
+**Transaction fields:**
 
-| Property    | Purpose                           |
-| ----------- | --------------------------------- |
-| id          | Uniquely identifies a transaction |
-| title       | Transaction name                  |
-| amount      | Money involved                    |
-| type        | Income or expense                 |
-| category    | Transaction category              |
-| date        | When it happened                  |
-| description | Additional information            |
+| Field | Description |
+|---|---|
+| id | Unique transaction identifier |
+| title | Transaction title |
+| amount | Transaction amount |
+| type | Income or expense |
+| categoryId | ID of the associated category |
+| date | Transaction date |
+| description | Optional additional information |
 
-## 2. Design categories
+### Category
 
-```
+Categories organize transactions.
+
+```js
 const categories = [
-  {
-    id: "1",
-    name: "Food",
-    type: "expense"
-  },
-  {
-    id: "2",
-    name: "Salary",
-    type: "income"
-  }
+  { id: "1", name: "Food", type: "expense" },
+  { id: "2", name: "Salary", type: "income" }
 ];
 ```
 
-Something important: categories have types too.
+**Category fields:**
 
-Because having an expense category called `Salary` doesn't make much sense.
+| Field | Description |
+|---|---|
+| id | Unique category identifier |
+| name | Category name |
+| type | Income or expense |
 
-Think about whether categories should be predefined, user-created, or both.
+Categories can be predefined or created by users.
 
-## 3.The relationships
+---
 
-Application has two collections:
+## 3. Business Rules
 
-- Transactions
-- Categories
+### Transaction Rules
 
-A transaction belongs to a category.
-Each transaction references a category.
+1. Transaction amounts cannot be negative.
+2. Every transaction must have a category.
+3. An expense transaction must use an expense category.
+4. An income transaction must use an income category.
+5. Every transaction must have a unique ID.
 
-Should store the category ID inside the transaction.
+### Category Rules
 
-## 4. The operations
+1. Categories can be predefined.
+2. Users can create their own categories.
+3. Categories must have a type: income or expense.
+4. A category must have a unique ID.
+5. Category deletion behavior is not decided yet.
 
-Transactions
+---
+
+## 4. Relationships
+
+- Every transaction belongs to exactly one category.
+- A transaction stores the category's ID through `categoryId`.
+- A category can be associated with multiple transactions.
+- A transaction's type must match its category's type.
+
+---
+
+## 5. Transaction Operations
+
+The application should support:
 
 - Add a transaction.
-- Edit a transaction.
+- Update a transaction.
 - Delete a transaction.
 - Find a transaction by ID.
+- Get all transactions.
 - Filter transactions by category.
 - Filter transactions by type.
-- Sort transactions by date.
 - Search transactions by title.
+- Sort transactions by date.
 
-Calculations
+---
 
-- Calculate total income.
-- Calculate total expenses.
-- Calculate current balance.
+## 6. Category Operations
 
-The formulas:
+The application should support:
 
-\\[ Income = \sum IncomeTransactions \\]
+- Get all categories.
+- Add a category.
+- Update a category.
+- Delete a category.
+- Find a category by ID.
+- Filter categories by type.
 
-\\[ Expenses = \sum ExpenseTransactions \\]
+---
 
-\\[ Balance = Income - Expenses \\]
+## 7. Financial Calculations
 
-One important rule: calculate these values from the transactions. Don't maintain a separate balance that you manually increment and decrement.
+All financial totals should be calculated from the transactions.
 
+### Total Income
 
-JavaScript modules.
+The sum of all income transactions.
 
-```
+### Total Expenses
+
+The sum of all expense transactions.
+
+### Balance
+
+Balance = Total Income - Total Expenses
+
+The balance should be calculated when needed rather than stored and manually updated.
+
+---
+
+## 8. Project Structure
+
+```text
 src/
-├── data/
-│   ├── transactions.js
-│   └── categories.js
+├── assets/
+│   ├── styles/
+│   └── images/
 │
 ├── services/
 │   ├── transaction-service.js
 │   ├── category-service.js
 │   └── calculation-service.js
 │
+├── data/
+│   ├── transactions.js
+│   └── categories.js
+│
 └── main.js
+
+index.html
+planning.md
+package.json
 ```
 
-```
-addTransaction()
-updateTransaction()
-deleteTransaction()
-getTransactions()
-filterTransactions()
-calculateTotalIncome()
-calculateTotalExpenses()
-calculateBalance()
-```
+---
 
-No DOM. No UI. Just JavaScript.
+## 9. Planned Development Steps
+
+1. Data modeling and business rules.
+2. Core JavaScript logic without DOM manipulation.
+3. DOM integration and user interface.
+4. Local storage for data persistence.
+5. Monthly summaries and reports.
+6. Filtering, searching, and sorting.
+7. Testing and improvements.
+
+---
+
+## 10. Core Functions
+
+### Transaction Service
+
+- `addTransaction()`
+- `updateTransaction()`
+- `deleteTransaction()`
+- `getTransactions()`
+- `getTransactionById()`
+- `filterTransactions()`
+
+### Category Service
+
+- `addCategory()`
+- `updateCategory()`
+- `deleteCategory()`
+- `getCategories()`
+- `getCategoryById()`
+
+### Calculation Service
+
+- `calculateTotalIncome()`
+- `calculateTotalExpenses()`
+- `calculateBalance()`
