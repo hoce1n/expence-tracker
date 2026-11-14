@@ -13,10 +13,10 @@ mock.module("../transaction-service.js", () => {
 });
 
 // 2. Import the functions *after* mocking the dependency
-import { 
-  calculateTotalIncome, 
-  calculateTotalExpenses, 
-  calculateBalance 
+import {
+  calculateTotalIncome,
+  calculateTotalExpenses,
+  calculateBalance,
 } from "../calculation-service.js";
 
 describe("Calculation Service", () => {

@@ -5,16 +5,19 @@ mock.module("../data/categories.js", () => {
   return {
     categories: [
       { id: "cat-1", name: "Salary", type: "income" },
-      { id: "cat-2", name: "Groceries", type: "expense" }
-    ]
+      { id: "cat-2", name: "Groceries", type: "expense" },
+    ],
   };
 });
 
 // 2. Import functions after mock definition
-import { getCategories, getCategoryIDs, findCategory } from "../category-service.js";
+import {
+  getCategories,
+  getCategoryIDs,
+  findCategory,
+} from "../category-service.js";
 
 describe("Category Service", () => {
-  
   it("should return all categories", () => {
     const result = getCategories();
     expect(result.length).toBe(2);
@@ -37,5 +40,4 @@ describe("Category Service", () => {
     const category = findCategory("invalid-id");
     expect(category).toBeUndefined();
   });
-
 });

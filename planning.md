@@ -31,20 +31,20 @@ const transaction = {
   type: "expense",
   categoryId: "1",
   date: "2026-11-08",
-  description: "Weekly shopping"
+  description: "Weekly shopping",
 };
 ```
 
 **Transaction fields:**
 
-| Field | Description |
-|---|---|
-| id | Unique transaction identifier |
-| title | Transaction title |
-| amount | Transaction amount |
-| type | Income or expense |
-| categoryId | ID of the associated category |
-| date | Transaction date |
+| Field       | Description                     |
+| ----------- | ------------------------------- |
+| id          | Unique transaction identifier   |
+| title       | Transaction title               |
+| amount      | Transaction amount              |
+| type        | Income or expense               |
+| categoryId  | ID of the associated category   |
+| date        | Transaction date                |
 | description | Optional additional information |
 
 ### Category
@@ -54,17 +54,17 @@ Categories organize transactions.
 ```js
 const categories = [
   { id: "1", name: "Food", type: "expense" },
-  { id: "2", name: "Salary", type: "income" }
+  { id: "2", name: "Salary", type: "income" },
 ];
 ```
 
 **Category fields:**
 
-| Field | Description |
-|---|---|
-| id | Unique category identifier |
-| name | Category name |
-| type | Income or expense |
+| Field | Description                |
+| ----- | -------------------------- |
+| id    | Unique category identifier |
+| name  | Category name              |
+| type  | Income or expense          |
 
 Categories can be predefined or created by users.
 

@@ -8,7 +8,7 @@ mock.module("../category-service.js", () => {
       if (id === "cat-1") return { id: "cat-1", type: "income" };
       if (id === "cat-2") return { id: "cat-2", type: "expense" };
       return null;
-    }
+    },
   };
 });
 
@@ -16,7 +16,6 @@ mock.module("../category-service.js", () => {
 import { isValidTransaction, addTransaction } from "../transaction-service.js";
 
 describe("Transaction Service", () => {
-  
   describe("isValidTransaction", () => {
     it("should return true for a valid income transaction", () => {
       const validTx = {
@@ -24,7 +23,7 @@ describe("Transaction Service", () => {
         amount: 1000,
         type: "income",
         categoryId: "cat-1",
-        date: "2026-11-01"
+        date: "2026-11-01",
       };
 
       expect(isValidTransaction(validTx)).toBe(true);
@@ -36,7 +35,7 @@ describe("Transaction Service", () => {
         amount: -50,
         type: "expense",
         categoryId: "cat-2",
-        date: "2026-11-01"
+        date: "2026-11-01",
       };
 
       expect(isValidTransaction(invalidTx)).toBe(false);
@@ -48,11 +47,10 @@ describe("Transaction Service", () => {
         amount: 100,
         type: "income", // Mismatched! cat-2 is expense
         categoryId: "cat-2",
-        date: "2026-11-01"
+        date: "2026-11-01",
       };
 
       expect(isValidTransaction(mismatchTx)).toBe(false);
     });
   });
-
 });
