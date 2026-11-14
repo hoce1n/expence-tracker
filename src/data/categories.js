@@ -4,4 +4,4 @@ export const categories = [
   { id: "cat-3", name: "Food & Groceries", type: "expense" },
   { id: "cat-4", name: "Rent & Housing", type: "expense" },
   { id: "cat-5", name: "Transportation", type: "expense" },
-];
+]

@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test"
 
 // 1. Mock the transaction-service so it returns predictable test data
 mock.module("../transaction-service.js", () => {
@@ -9,29 +9,29 @@ mock.module("../transaction-service.js", () => {
       { id: 3, type: "expense", amount: 200 },
       { id: 4, type: "expense", amount: 100 },
     ],
-  };
-});
+  }
+})
 
 // 2. Import the functions *after* mocking the dependency
 import {
-  calculateTotalIncome,
-  calculateTotalExpenses,
   calculateBalance,
-} from "../calculation-service.js";
+  calculateTotalExpenses,
+  calculateTotalIncome,
+} from "../calculation-service.js"
 
 describe("Calculation Service", () => {
   it("should calculate total income correctly", () => {
-    const totalIncome = calculateTotalIncome();
-    expect(totalIncome).toBe(1500); // 1000 + 500
-  });
+    const totalIncome = calculateTotalIncome()
+    expect(totalIncome).toBe(1500) // 1000 + 500
+  })
 
   it("should calculate total expenses correctly", () => {
-    const totalExpense = calculateTotalExpenses();
-    expect(totalExpense).toBe(300); // 200 + 100
-  });
+    const totalExpense = calculateTotalExpenses()
+    expect(totalExpense).toBe(300) // 200 + 100
+  })
 
   it("should calculate the correct balance", () => {
-    const balance = calculateBalance();
-    expect(balance).toBe(1200); // 1500 - 300
-  });
-});
+    const balance = calculateBalance()
+    expect(balance).toBe(1200) // 1500 - 300
+  })
+})

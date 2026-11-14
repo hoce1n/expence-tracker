@@ -31,4 +31,4 @@ export let transactions = [
     categoryId: "cat-4",
     date: "2026-11-06",
   },
-];
+]

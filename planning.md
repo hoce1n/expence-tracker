@@ -32,7 +32,7 @@ const transaction = {
   categoryId: "1",
   date: "2026-11-08",
   description: "Weekly shopping",
-};
+}
 ```
 
 **Transaction fields:**
@@ -55,7 +55,7 @@ Categories organize transactions.
 const categories = [
   { id: "1", name: "Food", type: "expense" },
   { id: "2", name: "Salary", type: "income" },
-];
+]
 ```
 
 **Category fields:**
