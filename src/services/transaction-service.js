@@ -1,7 +1,8 @@
-import { transactions } from "../data/transactions";
+import { transactions } from "../data/transactions.js";
+import { findCategory, getCategoryIDs } from "./category-service.js";
 
 function getNextId() {
-    if (transactions.length === 0) return '1';
+    if (transactions.length === 0) return 'tx-1';
     const maxId = transactions.reduce((max, tx) => {
         const parts = tx.id.split("-");
         const num = Number(parts[1]);
@@ -18,9 +19,9 @@ export function isValidTransaction(tx) {
 
     if (typeof title !== 'string' || title.trim() === '') return false;
     if (typeof categoryId !== 'string' || categoryId.trim() === '') return false;
-
+    if (!getCategoryIDs().includes(categoryId)) return false;
+    if (type !== findCategory(categoryId).type) return false;
     if (typeof amount !== 'number' || isNaN(amount) || amount <= 0) return false;
-
     if (type !== 'income' && type !== 'expense') return false;
 
     if (typeof date !== 'string' || isNaN(Date.parse(date))) return false;
@@ -29,8 +30,7 @@ export function isValidTransaction(tx) {
 }
 
 export function getTransactions() {
-    const items = [...transactions];
-    return items ? items : []
+    return structuredClone(transactions);
 }
 
 export function getTransactionById(id) {
@@ -41,8 +41,8 @@ export function getTransactionById(id) {
 
 export function addTransaction(txData) {
     const transaction = {
-        id: txData.id || getNextId(),
-        ...txData
+        ...txData,
+        id: getNextId()
     }
 
     if (!isValidTransaction(transaction)) {
@@ -80,5 +80,5 @@ export function deleteTransaction(id) {
     }
 
     transactions.splice(index, 1);
-    return transactions
+    return getTransactions();
 }

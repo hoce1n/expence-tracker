@@ -1,4 +1,4 @@
-import { getTransactions } from "./transaction-service";
+import { getTransactions } from "./transaction-service.js";
 
 export function calculateTotalIncome() {
     const incomes = getTransactions()
