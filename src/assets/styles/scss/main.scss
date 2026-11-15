@@ -1,3 +1,6 @@
 @use "./base";
 @use "./mixins";
 @use "./variables";
+
+// components
+@use "./components/header"

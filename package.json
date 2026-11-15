@@ -5,6 +5,7 @@
     "sass:build": "sass --style=compressed --no-source-map src/assets/styles/scss/main.scss:src/assets/styles/style.css"
   },
   "dependencies": {
+    "lucide": "^1.73.0",
     "servor": "^4.0.2"
   },
   "devDependencies": {

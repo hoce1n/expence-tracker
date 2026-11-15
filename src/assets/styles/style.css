@@ -1,3 +1,45 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+}
+
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header__icon {
+  stroke: blue;
+}
+.header__title {
+  font-size: x-large;
+  font-weight: bold;
+}
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 /*# sourceMappingURL=style.css.map */
