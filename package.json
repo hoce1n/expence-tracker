@@ -1,8 +1,13 @@
 {
   "scripts": {
-    "start": "servor --reload"
+    "start": "servor --reload",
+    "sass": "sass --watch src/assets/styles/scss/main.scss:src/assets/styles/style.css",
+    "sass:build": "sass --style=compressed --no-source-map src/assets/styles/scss/main.scss:src/assets/styles/style.css"
   },
   "dependencies": {
     "servor": "^4.0.2"
+  },
+  "devDependencies": {
+    "sass": "^1.108.2"
   }
 }
