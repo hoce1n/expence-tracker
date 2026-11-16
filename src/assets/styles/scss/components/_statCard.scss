@@ -1,3 +1,5 @@
+@use "../variables" as v;
+
 .stat-card {
     width: 100%;
     margin: 25px;
@@ -22,13 +24,13 @@
     &--income {
         .stat-card__icon,
         .stat-card__body {
-            color: green;
+            color: v.$color-income;
         }
     }
     &--expense {
         .stat-card__icon,
         .stat-card__body {
-            color: red;
+            color: v.$color-expense;
         }
     }
 }

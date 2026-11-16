@@ -18,6 +18,7 @@ body.style.width = "90%";
 body.style.margin = "0 auto";
 body.appendChild(navbar());
 body.appendChild(totalCards());
+body.appendChild(addTransaction());
 
 
 function navbar() {
@@ -105,6 +106,37 @@ function totalCards() {
         },
         root: element
     })
+
+    return element;
+}
+
+function addTransaction() {
+    const element = document.createElement("section");
+    element.style.width = "50%";
+    element.style.border = "solid black 1px"
+    element.innerHTML = `
+        <div class="">
+            <h3>Add Transaction</h3>
+            <div>
+                <div>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="">
+                </div>
+                <div>
+                    <label for="amount">Amount</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="type">Type</label>
+                    <select name="type" id=""></select>
+                </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select name="category" id=""></select>
+                </div>
+            </div>
+        </div>
+    `
 
     return element;
 }
