@@ -42,4 +42,31 @@ input, button, textarea, select {
   gap: 12px;
 }
 
+.stat-card {
+  width: 100%;
+  margin: 25px;
+  padding: 15px 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.stat-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stat-card__title {
+  font-weight: lighter;
+}
+.stat-card__body {
+  font-size: x-large;
+  font-weight: bold;
+}
+.stat-card--income .stat-card__icon,
+.stat-card--income .stat-card__body {
+  color: green;
+}
+.stat-card--expense .stat-card__icon,
+.stat-card--expense .stat-card__body {
+  color: red;
+}
+
 /*# sourceMappingURL=style.css.map */
