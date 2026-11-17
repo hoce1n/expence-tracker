@@ -1,36 +1,35 @@
 @use "../variables" as v;
 
 .stat-card {
-    width: 100%;
-    margin: 25px;
-    padding: 15px 25px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 25px;
+  padding: 15px 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
-    &__head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__title {
+    font-weight: lighter;
+  }
+  &__icon {
+  }
+  &__body {
+    font-size: x-large;
+    font-weight: bold;
+  }
+  &--income {
+    .stat-card__icon,
+    .stat-card__body {
+      color: v.$color-income;
     }
-    &__title {
-        font-weight: lighter;
+  }
+  &--expense {
+    .stat-card__icon,
+    .stat-card__body {
+      color: v.$color-expense;
     }
-    &__icon {
-        
-    }
-    &__body {   
-        font-size: x-large;
-        font-weight: bold;
-    }
-    &--income {
-        .stat-card__icon,
-        .stat-card__body {
-            color: v.$color-income;
-        }
-    }
-    &--expense {
-        .stat-card__icon,
-        .stat-card__body {
-            color: v.$color-expense;
-        }
-    }
+  }
 }

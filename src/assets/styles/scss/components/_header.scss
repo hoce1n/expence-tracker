@@ -1,23 +1,23 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    &__brand-group {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    &__icon {
-        stroke: blue;
-    }
-    &__title {
-        font-size: x-large;
-        font-weight: bold;
-    }
-    &__actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+  &__brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  &__icon {
+    stroke: blue;
+  }
+  &__title {
+    font-size: x-large;
+    font-weight: bold;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 }

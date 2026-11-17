@@ -9,7 +9,9 @@
   background-color: $white-bg;
   border: $border-width solid $border-default;
   border-radius: $radius-input;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 
   &:focus-within {
     border-color: $primary;
