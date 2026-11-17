@@ -69,4 +69,39 @@ input, button, textarea, select {
   color: red;
 }
 
+.form {
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form__title {
+  font-weight: bold;
+}
+.form__body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+.form__date {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form__amount {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form__submit {
+  margin: 0 15px;
+  padding: 0 12px;
+}
+
 /*# sourceMappingURL=style.css.map */
