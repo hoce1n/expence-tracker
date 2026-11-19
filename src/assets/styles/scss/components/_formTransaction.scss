@@ -1,16 +1,46 @@
-.form {
-  padding: 15px 25px;
+@mixin field($direction: column) {
   display: flex;
-  flex-direction: column;
+  flex-direction: $direction;
+}
+
+.form {
+  input {
+    border: none;
+    background-color: aliceblue;
+    padding: 8px 12px;
+    border-radius: 12px;
+  }
+
+  input:valid {
+    border-bottom: solid green 1px;
+  }
+
+  input:user-invalid {
+    border-bottom: solid red 1px;
+  }
+
+  input:focus {
+    border: none;
+    outline: none;
+  }
+
+  label {
+    margin-left: 16px;
+  }
+
+  @include field($direction: column);
+  padding: 15px 25px;
   gap: 15px;
 
-  &__title {
+  &__head {
     font-weight: bold;
   }
   &__body {
-    display: flex;
-    flex-direction: column;
+    @include field($direction: column);
     gap: 15px;
+  }
+  &__title {
+    @include field($direction: column);
   }
   &__wrapper {
     display: flex;
@@ -19,23 +49,33 @@
     gap: 15px;
   }
   &__date {
-    display: flex;
-    flex-direction: column;
+    @include field($direction: column);
     width: 100%;
-    label {
-    }
   }
   &__amount {
-    display: flex;
-    flex-direction: column;
+    @include field($direction: column);
     width: 100%;
   }
   &__type {
+    fieldset {
+      background-color: aliceblue;
+      border-radius: 12px;
+    }
   }
   &__category {
+    select {
+      border-radius: 12px;
+      padding: 8px 8px 8px 0;
+      background-color: aliceblue;
+    }
   }
   &__submit {
     margin: 0 15px;
     padding: 0 12px;
+    border: none;
+    background-color: aliceblue;
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
   }
 }

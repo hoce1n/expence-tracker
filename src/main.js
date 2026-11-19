@@ -106,7 +106,7 @@ function addTransaction() {
 
   function createSelect(category) {
     return `
-            <option value="${category.name}">${category.name}</option>
+            <option value="${category.id}">${category.name}</option>
         `
   }
 
@@ -120,16 +120,43 @@ function addTransaction() {
   element.style.margin = "25px"
   element.innerHTML = `
         <form class="form">
-            <h3 class="form__title">Add Transaction</h3>
+            <h3 class="form__head">Add Transaction</h3>
             <div class="form__body">
+                <div class="form__title">
+                  <label for="formTitle">
+                    Title
+                  </label>
+                  <input 
+                    name="title" 
+                    id="formTitle" 
+                    type="text"  
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    pattern="[a-zA-Z0-9_]+"
+                    placeholder="Title (3-20 chars, alphanumeric)" 
+                  />
+                </div>
                 <div class="form__wrapper">
                     <div class="form__date">
-                        <label for="date">Date</label>
-                        <input type="date" name="date" id="">
+                        <label for="formDate">Date</label>
+                        <input 
+                          type="date" 
+                          name="date" 
+                          id="formDate"
+                          required
+                        >
                     </div>
                     <div class="form__amount">
-                        <label for="amount">Amount</label>
-                        <input type="text">
+                        <label for="formAmount">Amount</label>
+                        <input 
+                          type="number" 
+                          name="amount" 
+                          id="formAmount"
+                          min="1"
+                          step="5"
+                          required  
+                        >
                     </div>
                 </div>
                 <div class="form__type">
@@ -137,20 +164,20 @@ function addTransaction() {
                         <legend>Type: </legend>
 
                         <div>
-                            <input type="radio" id="income" name="income" value="income" checked />
+                            <input type="radio" id="income" name="type" value="income" checked />
                             <label for="income">Income</label>
                         </div>
 
                         <div>
-                            <input type="radio" id="expense" name="expense" value="expense" />
+                            <input type="radio" id="expense" name="type" value="expense" />
                             <label for="expense">Expense</label>
                         </div>
                     </fieldset>
                 </div>
                 <div class="form__wrapper">
                     <div class="form__category">
-                        <label for="category">Category</label>
-                        <select name="category" id="category-select">
+                        <label for="category">Category: </label>
+                        <select size="1" name="categoryId" id="category-select">
                             <option value="">--Please choose an option--</option>
                             ${renderOptions()}
                         </select>
