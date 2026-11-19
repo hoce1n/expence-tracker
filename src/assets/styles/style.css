@@ -149,4 +149,28 @@ select {
   cursor: pointer;
 }
 
+.transaction-list {
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+.transaction-list__title {
+  font-weight: bold;
+}
+.transaction-list--income {
+  background-color: rgba(0, 128, 0, 0.4);
+}
+.transaction-list--expense {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+.transaction-list__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.transaction-list__type {
+  border-radius: 12px;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
 /*# sourceMappingURL=style.css.map */

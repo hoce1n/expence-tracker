@@ -1,0 +1,25 @@
+.transaction-list {
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-top: 15px;
+    &__title {
+        font-weight: bold;
+    }
+
+    &--income {
+        background-color: rgba(0, 128, 0, 0.4);
+    }
+    &--expense {
+        background-color: rgba(255, 0, 0,0.4);
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__type {
+        border-radius: 12px;
+        font-size: 14px;
+        padding: 4px 8px;
+    }
+
+}

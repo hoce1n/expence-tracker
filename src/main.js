@@ -6,13 +6,18 @@ import {
   calculateTotalIncome,
 } from "./services/calculation-service.js"
 import { getCategories } from "./services/category-service.js"
+import { getTransactions } from "./services/transaction-service.js"
 
 const body = document.querySelector("body")
 body.style.width = "90%"
 body.style.margin = "0 auto"
 body.appendChild(navbar())
 body.appendChild(totalCards())
-body.appendChild(addTransaction())
+const main = document.createElement("section")
+main.style.display = "flex"
+main.appendChild(addTransaction())
+main.appendChild(listTransaction())
+body.appendChild(main);
 
 function navbar() {
   const element = document.createElement("nav")
@@ -118,6 +123,7 @@ function addTransaction() {
   element.style.width = "50%"
   element.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.1)"
   element.style.margin = "25px"
+  element.style.height = "fit-content"
   element.innerHTML = `
         <form class="form">
             <h3 class="form__head">Add Transaction</h3>
@@ -154,7 +160,7 @@ function addTransaction() {
                           name="amount" 
                           id="formAmount"
                           min="1"
-                          step="5"
+                          step="0.01"
                           required  
                         >
                     </div>
@@ -191,4 +197,44 @@ function addTransaction() {
     `
 
   return element
+}
+
+function listTransaction() {
+  const element = document.createElement("main")
+  element.style.width = "50%"
+  element.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.1)"
+  element.style.margin = "25px"
+  element.style.padding = "15px 25px"
+
+  function createTransaction(transaction) {
+    const type = transaction.type === "income" ? "income" : "expense"
+    return `
+      <div class="transaction-list transaction-list--${type}">
+        <h3 class="transaction-list__title">${transaction.title}</h3>
+        <div class="transaction-list__body">
+          <div class="transaction-list__wrapper">
+            <span class="transaction-list__amount">$ ${transaction.amount}</span>
+            <span class="transaction-list__type">${transaction.type}</span>
+          </div>
+          <span class="transaction-list__date">${transaction.date}</span>
+        </div>
+      </div> 
+   `
+  }
+
+  function renderTransaction() {
+    
+    if (getTransactions().length !== 0) {
+      return getTransactions().map(transaction => createTransaction(transaction)).join("");
+    } else {
+      return `<div>No transaction founded.</div>`
+    }
+    
+  }
+
+  element.innerHTML = `
+    <h3>Transaction List </h3>
+    ${renderTransaction()}
+  `
+  return element;
 }
