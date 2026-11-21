@@ -137,10 +137,9 @@ function addTransaction() {
                     id="formTitle" 
                     type="text"  
                     required
-                    minlength="3"
-                    maxlength="20"
-                    pattern="[a-zA-Z0-9_]+"
-                    placeholder="Title (3-20 chars, alphanumeric)" 
+                    minlength="1"
+                    maxlength="50"
+                    placeholder="Transaction title"
                   />
                 </div>
                 <div class="form__wrapper">
@@ -182,8 +181,8 @@ function addTransaction() {
                 </div>
                 <div class="form__wrapper">
                     <div class="form__category">
-                        <label for="category">Category: </label>
-                        <select size="1" name="categoryId" id="category-select">
+                        <label for="category-select">Category: </label>
+                        <select size="1" name="categoryId" id="category-select" required>
                             <option value="">--Please choose an option--</option>
                             ${renderOptions()}
                         </select>
@@ -199,6 +198,35 @@ function addTransaction() {
   return element
 }
 
+function createTransactionMarkup(transaction) {
+  const type = transaction.type === "income" ? "income" : "expense"
+  const amount = Number(transaction.amount).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+
+  return `
+      <article class="transaction-list transaction-list--${type}">
+        <h3 class="transaction-list__title">${transaction.title}</h3>
+        <div class="transaction-list__body">
+          <div class="transaction-list__wrapper">
+            <span class="transaction-list__amount">$${amount}</span>
+            <span class="transaction-list__type">${transaction.type}</span>
+          </div>
+          <span class="transaction-list__date">${transaction.date}</span>
+        </div>
+      </article>
+   `
+}
+
+export function renderTransactions(transactions = getTransactions()) {
+  if (transactions.length === 0) {
+    return `<div class="transaction-list__empty">No transactions found.</div>`
+  }
+
+  return transactions.map(createTransactionMarkup).join("")
+}
+
 function listTransaction() {
   const element = document.createElement("main")
   element.style.width = "50%"
@@ -206,35 +234,9 @@ function listTransaction() {
   element.style.margin = "25px"
   element.style.padding = "15px 25px"
 
-  function createTransaction(transaction) {
-    const type = transaction.type === "income" ? "income" : "expense"
-    return `
-      <div class="transaction-list transaction-list--${type}">
-        <h3 class="transaction-list__title">${transaction.title}</h3>
-        <div class="transaction-list__body">
-          <div class="transaction-list__wrapper">
-            <span class="transaction-list__amount">$ ${transaction.amount}</span>
-            <span class="transaction-list__type">${transaction.type}</span>
-          </div>
-          <span class="transaction-list__date">${transaction.date}</span>
-        </div>
-      </div> 
-   `
-  }
-
-  function renderTransaction() {
-    
-    if (getTransactions().length !== 0) {
-      return getTransactions().map(transaction => createTransaction(transaction)).join("");
-    } else {
-      return `<div>No transaction founded.</div>`
-    }
-    
-  }
-
   element.innerHTML = `
-    <h3>Transaction List </h3>
-    ${renderTransaction()}
+    <h3>Transactions</h3>
+    ${renderTransactions()}
   `
-  return element;
+  return element
 }
